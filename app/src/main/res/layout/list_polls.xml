@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="10dp">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtQuestion"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Test Question"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp" />
+    <RadioGroup
+        android:id="@+id/options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtQuestion"
+        android:layout_alignParentStart="true">
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New RadioButton"
+        android:id="@+id/radioButton1"
+        android:layout_below="@+id/txtQuestion"
+        android:layout_alignStart="@+id/txtQuestion"
+        android:textSize="12dp"
+        android:checked="false" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New RadioButton"
+        android:id="@+id/radioButton2"
+        android:layout_below="@+id/radioButton1"
+        android:layout_alignStart="@+id/radioButton1"
+        android:textSize="12dp" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New RadioButton"
+        android:id="@+id/radioButton3"
+        android:layout_below="@+id/radioButton2"
+        android:layout_alignParentStart="true"
+        android:textSize="12dp" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New RadioButton"
+        android:id="@+id/radioButton4"
+        android:layout_below="@+id/radioButton3"
+        android:layout_alignStart="@+id/radioButton3"
+        android:textSize="12dp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:text="5"
+        android:id="@+id/o1cnt"
+        android:textSize="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textAlignment="center"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_below="@+id/txtQuestion"
+        android:layout_alignEnd="@+id/txtQuestion"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/greencircle"
+        android:textColor="@color/colorButtonText"/>
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:text="5"
+        android:id="@+id/o2cnt"
+        android:textSize="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textAlignment="center"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_below="@+id/o1cnt"
+        android:layout_alignStart="@+id/o1cnt"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/greencircle"
+        android:textColor="@color/colorButtonText"/>
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:text="5"
+        android:id="@+id/o3cnt"
+        android:textSize="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textAlignment="center"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_below="@+id/o2cnt"
+        android:layout_alignStart="@+id/o2cnt"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/greencircle"
+        android:textColor="@color/colorButtonText"/>
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:text="5"
+        android:id="@+id/o4cnt"
+        android:textSize="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textAlignment="center"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_below="@+id/o3cnt"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="false"
+        android:background="@drawable/greencircle"
+        android:textColor="@color/colorButtonText"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="SUBMIT"
+        android:id="@+id/btnpollsubmit"
+        android:layout_below="@+id/o4cnt"
+        android:background="@color/colorButton"
+        android:textColor="@color/colorButtonText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+
+</RelativeLayout>

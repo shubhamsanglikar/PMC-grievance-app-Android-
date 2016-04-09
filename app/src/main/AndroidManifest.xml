@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mitcoe.shubhamsanglikar.avayasmartcityproject" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--
+ The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but are recommended.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/pmcicon"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        <activity
+            android:name=".HomeActivity"
+            android:theme="@style/Base.Theme.AppCompat.Light"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".RegistrationActivity"
+            android:label="Complaint details" >
+        </activity>
+        <activity
+            android:name=".TabActivity"
+            android:label="@string/title_activity_tab" >
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="PMC" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ComplaintActivity"
+            android:label="Your Complaints" >
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".Complaint1Activity"
+            android:label="Register Complaint" >
+        </activity>
+        <activity
+            android:name=".PublicNoticesActivity"
+            android:label="@string/title_activity_public_notices" >
+        </activity>
+        <activity
+            android:name=".SuggestionsActivity"
+            android:label="Suggestion" >
+        </activity>
+        <activity
+            android:name=".MapsAct2"
+            android:label="@string/title_activity_maps_act2" >
+        </activity>
+        <activity
+            android:name=".ViewComplaintActivity"
+            android:label="Your complaint" >
+        </activity>
+        <activity
+            android:name=".ImageActivity"
+            android:label="@string/title_activity_image" >
+
+        </activity>
+    </application>
+
+</manifest>

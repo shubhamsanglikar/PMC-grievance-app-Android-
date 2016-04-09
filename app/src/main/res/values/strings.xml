@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">PMC Grievance App</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_tab">TabActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_complaint">ComplaintActivity</string>
+    <string name="title_activity_location">Map</string>
+    <string name="title_activity_complaint1">Complaint1Activity</string>
+    <string name="title_activity_suggest_complaints">SuggestComplaintsActivity</string>
+    <string name="title_activity_complaint_register">ComplaintRegisterActivity</string>
+    <string name="title_activity_public_notices">PublicNoticesActivity</string>
+
+
+
+
+    <string name="area_prompt">Choose a Area</string>
+
+    <string-array name="area_arrays">
+        <item>Select Area</item>
+        <item>Your Location</item>
+        <item>Kothrud</item>
+        <item>Hadapsar</item>
+        <item>Camp</item>
+        <item>Kondhwa</item>
+
+    </string-array>
+
+    <string-array name="type_arrays">
+        <item>Select Type</item>
+        <item>Road</item>
+        <item>Electricity</item>
+        <item>Water</item>
+        <item>Other</item>
+
+    </string-array>
+    <string name="title_activity_registercomplaint">Register complaint</string>
+    <string name="upload">upload</string>
+    <string name="caption">caption</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+
+    <string name="title_activity_suggestions">SuggestionsActivity</string>
+    <string name="title_activity_maps_act2">Map</string>
+    <string name="title_activity_view_complaint">ViewComplaintActivity</string>
+    <string name="title_activity_image">ImageActivity</string>
+
+
+
+
+</resources>

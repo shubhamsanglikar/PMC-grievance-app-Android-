@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mitcoe.shubhamsanglikar.avayasmartcityproject.FeedbackFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="SUBMIT"
+        android:id="@+id/btnfeedbacksubmit"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/colorButtonText"
+        android:background="@color/colorButton"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtfeedback"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/btnfeedbacksubmit"
+        android:hint="Enter feedback here"
+        android:gravity="top" />
+</RelativeLayout>

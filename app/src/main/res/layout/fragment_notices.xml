@@ -1,0 +1,20 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="120dp"
+
+    tools:context="com.mitcoe.shubhamsanglikar.avayasmartcityproject.NoticesFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/list_notices"
+        android:layout_gravity="center"
+        android:choiceMode="none"
+        android:clickable="true"
+        android:dividerHeight="10dp"
+        android:drawSelectorOnTop="false"
+        android:padding="10dp" />
+</RelativeLayout>

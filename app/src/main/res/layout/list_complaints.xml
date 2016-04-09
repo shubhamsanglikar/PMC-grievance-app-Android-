@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/txttitle"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:text="ID"
+        android:textSize="25dp"
+        android:clickable="false"
+        android:textStyle="normal|bold"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tKothrud"
+        android:id="@+id/txtarea"
+        android:textColor="#feff2c1d"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_below="@+id/txttitle"
+        android:clickable="false"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="21"
+        android:id="@+id/txtupvotes"
+        android:layout_gravity="center_horizontal"
+        android:clickable="false"
+        android:layout_below="@+id/txttextupvotes"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upvotes"
+        android:id="@+id/txttextupvotes"
+        android:layout_gravity="center_horizontal"
+        android:textSize="18dp"
+        android:textIsSelectable="true"
+        android:clickable="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="This is a temporary title"
+        android:id="@+id/txttexttitle"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/txttitle"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
