@@ -46,6 +46,7 @@ public class JSONTaskPOSTFeedback extends AsyncTask<String,String,String> {
 
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("feedback", strings[1]));
+            params.add(new BasicNameValuePair("uid", strings[2]));
 
             OutputStream os = conn.getOutputStream();
             BufferedWriter writer = new BufferedWriter(

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/FireBrigde"
+
+            android:title="Fire Brigde" />
+        <item
+            android:id="@+id/PunePoliceStation"
+
+            android:title="Pune Police Station" />
+        <item
+            android:id="@+id/PrivateCrane"
+
+            android:title="Private Crane" />
+
+        <item
+            android:id="@+id/WomanandChildren"
+
+            android:title="Woman/ Children helpline" />
+        <item
+            android:id="@+id/SeniorCitizenHelpline"
+
+            android:title="Senior Citizen Helpline" />
+
+        <item
+            android:id="@+id/Hospital"
+            android:title="Hospital" />
+    </group>
+
+
+
+</menu>

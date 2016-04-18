@@ -21,8 +21,13 @@
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
         <activity
             android:name=".HomeActivity"
-            android:theme="@style/Base.Theme.AppCompat.Light"
+            android:theme="@style/Theme.AppCompat.Light"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:label="Contacts" >
         </activity>
         <activity
             android:name=".RegistrationActivity"
@@ -71,7 +76,7 @@
         </activity>
         <activity
             android:name=".ViewComplaintActivity"
-            android:label="Your complaint" >
+            android:label="Your Complaint" >
         </activity>
         <activity
             android:name=".ImageActivity"

@@ -16,7 +16,7 @@
     <color name="colorFABSuggest">#6fdd00</color>
     <color name="colorFABComplaint">#73e600</color>-->
 
-    <color name="colorActionBar">#4caf50</color>
+    <color name="colorActionBar">#000000</color>
 
     <color name="colorButton">#43a047</color>
     <color name="colorButtonText">#FFFFFF</color>

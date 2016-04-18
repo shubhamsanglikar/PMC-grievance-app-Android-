@@ -2,8 +2,11 @@ package com.mitcoe.shubhamsanglikar.avayasmartcityproject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -27,7 +30,7 @@ import android.widget.Toast;
 
 
 public class HomeActivity extends ActionBarActivity
-        implements FeedbackFragment.OnFragmentInteractionListener,NavigationDrawerFragment.NavigationDrawerCallbacks,View.OnClickListener,PollsFragment.OnFragmentInteractionListener,NoticesFragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener,FeedbackFragment.OnFragmentInteractionListener,NavigationDrawerFragment.NavigationDrawerCallbacks,View.OnClickListener,PollsFragment.OnFragmentInteractionListener,NoticesFragment.OnFragmentInteractionListener{
     NavigationDrawerFragment navDrawer = new NavigationDrawerFragment();
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -85,6 +88,10 @@ public class HomeActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+     //   NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+//        navigationView.setNavigationItemSelectedListener(this);
+
         isFabOpen=false;
         fab = (FloatingActionButton)findViewById(R.id.fab);
         suggest = (FloatingActionButton)findViewById(R.id.suggest);
@@ -100,6 +107,7 @@ public class HomeActivity extends ActionBarActivity
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+
         mTitle = "Home";
 
         // Set up the drawer.
@@ -115,7 +123,6 @@ public class HomeActivity extends ActionBarActivity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         switch(position) {
-
             case 1:
             fragmentManager.beginTransaction()
                     .replace(R.id.container, NoticesFragment.newInstance("str1","str2"))
@@ -213,6 +220,11 @@ public class HomeActivity extends ActionBarActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        return false;
     }
 
     /**

@@ -41,6 +41,7 @@ public class MapsAct2 extends FragmentActivity implements View.OnClickListener {
     GoogleMap mMap;
    // private static final String hostIP="192.168.1.5";
     InitClass obj=new InitClass();
+    GPSTracker g;
     String hostIP = obj.getHostIP();
     String area;
     String type;
@@ -51,16 +52,19 @@ public class MapsAct2 extends FragmentActivity implements View.OnClickListener {
     LatLng ZoomMarker;
     LatLng recent = new LatLng(0,0);
     Marker sel_loc;
+    LatLng latLng;
    // double[] latitude = {18.5353, 18.5456, 18.6397, 18.9323};   //    Give these vaules from databases
    // double[] longitude = {73.828, 73.7849, 73.7959, 73.6869};   //    & make sure the datatype is same
     double latitude[]=new double[20];
     double longitude[]=new double[20];
     int cid[]= new int[20];
+    int upvotes[]= new int[20];
     String t[]= new String[20];
     int coordinateCnt = 0;
 
     String[] title ={"data","data","data","data"};//
-
+    String sub;
+    int upv;
     public final static String latitudekey="latitude";
     public final static String longitudekey="longitude";
 
@@ -77,38 +81,68 @@ public class MapsAct2 extends FragmentActivity implements View.OnClickListener {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
+         g =new GPSTracker(MapsAct2.this);
         mMap = ((SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map)).getMap();
 
 
-        area = getIntent().getStringExtra("area");
+
+        area=getIntent().getStringExtra("area");
         type = getIntent().getStringExtra("type");
-        get_latlng(area, type);
-        search(area);
-        Log.d("get_latlang output", "" + area + ",Type" + type);
-        mark(latitude, longitude, title);
-        marker();
-        Toast.makeText(getApplicationContext(), "."+area+"."+latitude[0], Toast.LENGTH_LONG).show();
-        ZoomMarker=new LatLng(0,0);
-        if(latitude[0]==0) {
-            if (area.equals("Kothrud"))
-                ZoomMarker = new LatLng(KothrudMarker.latitude, KothrudMarker.longitude);
-            else if (area.equals("Kondhwa"))
-                ZoomMarker = new LatLng(KondhwaMarker.latitude, KondhwaMarker.longitude);
-            else if (area.equals("Hadapsar"))
-                ZoomMarker = new LatLng(HadapsarMarker.latitude, HadapsarMarker.longitude);
-            else if (area.equals("Camp"))
-                ZoomMarker = new LatLng(CampMarker.latitude, CampMarker.longitude);
+
+        //////
+        if(area.equals("Your Location"))
+        {
+
+            //String lat =getIntent().getStringExtra(Complaint1Activity.latkey);
+           // String lon= getIntent().getStringExtra(Complaint1Activity.lonkey);
+
+
+
+
+            //latLng = new LatLng(Double.parseDouble(lat),Double.parseDouble(lon));
+            Log.d("lat lon......",""+g.latitude+"   "+g.longitude);
+            latLng = new LatLng(g.latitude,g.longitude);
+            //recent = latLng;
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+            //mark(latitude, longitude, title);
+            mMap.addMarker(new MarkerOptions().position(latLng).title("Your location"));
+            //checkradius(latitude,longitude);
+            area=getIntent().getStringExtra("newa");
         }
-        else
-            ZoomMarker = new LatLng(latitude[0],longitude[0]);
+        get_latlng(area, type);
+        Log.d("Got lat lon","marking");
+        mark(latitude, longitude, t);
+        marker();
 
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ZoomMarker, 12));
+            /////
 
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            search(area);
+            Log.d("get_latlang output", "" + area + ",Type" + type);
 
-            public boolean onMarkerClick(Marker marker) {
+
+            Toast.makeText(getApplicationContext(), "." + area + "." + latitude[0], Toast.LENGTH_LONG).show();
+            ZoomMarker = new LatLng(0, 0);
+            if (latitude[0] == 0) {
+                if (area.equals("Kothrud"))
+                    ZoomMarker = new LatLng(KothrudMarker.latitude, KothrudMarker.longitude);
+                else if (area.equals("Kondhwa"))
+                    ZoomMarker = new LatLng(KondhwaMarker.latitude, KondhwaMarker.longitude);
+                else if (area.equals("Hadapsar"))
+                    ZoomMarker = new LatLng(HadapsarMarker.latitude, HadapsarMarker.longitude);
+                else if (area.equals("Camp"))
+                    ZoomMarker = new LatLng(CampMarker.latitude, CampMarker.longitude);
+                else {
+                    ZoomMarker = new LatLng(latLng.latitude, latLng.longitude);
+                }
+            } else
+                ZoomMarker = new LatLng(latitude[0], longitude[0]);
+
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ZoomMarker, 12));
+
+            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+
+                public boolean onMarkerClick(Marker marker) {
                 /*arg0.remove();
                 Toast.makeText(getApplicationContext()
                         , "Remove Marker " + String.valueOf(arg0.getId())
@@ -119,14 +153,14 @@ public class MapsAct2 extends FragmentActivity implements View.OnClickListener {
                     } else {
                         marker.showInfoWindow();
                     }
-                if(!marker.getTitle().equals("Selected location")) {
+                    if (!marker.getTitle().equals("Selected location") && !marker.getTitle().equals("Your Location")) {
 
-                    upvote_confirmation_dialog(marker.getTitle());
+                        upvote_confirmation_dialog(marker.getTitle());
 
+                    }
+                    return true;
                 }
-                return true;
-            }
-        });
+            });
 
 
 
@@ -223,8 +257,9 @@ public class MapsAct2 extends FragmentActivity implements View.OnClickListener {
     }
 
     public void mark(double[] latitude, double[] longitude, String[] title) {
-
+        Log.d("Marking cnt","  " +coordinateCnt);
         for (int i = 0; i < coordinateCnt; i++) {
+            Log.d("Marking cnt",""+latitude[i]+ "  " +coordinateCnt);
             double x = latitude[i];
             double y = longitude[i];
             String name = ""+cid[i];
@@ -300,6 +335,7 @@ public class MapsAct2 extends FragmentActivity implements View.OnClickListener {
 
     void get_latlng(String area, String type){
         JSONTask task = new JSONTask();
+        Log.d("calling","getlatlng");
         try {
             String res = null;
             res = task.execute("http://" + hostIP + "/smartCity/get_latlng.php?area="+area+"&type="+type).get();
@@ -319,6 +355,7 @@ public class MapsAct2 extends FragmentActivity implements View.OnClickListener {
                         latitude[i]=(jsonObject.getJSONArray("complaints").getJSONObject(i).getDouble("latitude"));
                         longitude[i]=(jsonObject.getJSONArray("complaints").getJSONObject(i).getDouble("longitude"));
                         cid[i]=(jsonObject.getJSONArray("complaints").getJSONObject(i).getInt("cid"));
+                        upvotes[i]=(jsonObject.getJSONArray("complaints").getJSONObject(i).getInt("upvotes"));
                         t[i]=(jsonObject.getJSONArray("complaints").getJSONObject(i).getString("subject"));
                         Log.d("coordinates:",""+latitude[i]+","+longitude[i]+"cid:"+cid[i]);
                         coordinateCnt++;
@@ -340,11 +377,27 @@ public class MapsAct2 extends FragmentActivity implements View.OnClickListener {
     void upvote_confirmation_dialog(String title) {
         final AlertDialog alertDialog = new AlertDialog.Builder(MapsAct2.this).create();
         final String c = title;
-        alertDialog.setTitle("ID: "+title);
+
+
+        int i = Integer.parseInt(title);
+        int j =0;
+        for(j=0;j<cid.length;j++)
+        {
+            if(cid[j]==i)
+            {
+                sub = t[j];
+                upv = upvotes[j];
+                break;
+            }
+        }
+
+        alertDialog.setTitle(""+sub);
+        String id1="ID:"+title;
+        String upvotes1="UpVotes:"+upv;
         String category1="Category:"+type;
         String area1 = "Area: "+area;
 
-        alertDialog.setMessage(category1+"\n"+area1+"\nUpvote?");
+        alertDialog.setMessage(id1 + "\n" + category1 + "\n" + area1 + "\nUpvote?");
 
         alertDialog.setButton("Upvote", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
@@ -379,7 +432,7 @@ public class MapsAct2 extends FragmentActivity implements View.OnClickListener {
             else {
                 //  votes.setText("" + a);
 
-                Toast.makeText(getApplicationContext(), "Upvoted!"+res, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Complaint upvoted successfully!", Toast.LENGTH_LONG).show();
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -392,7 +445,8 @@ public class MapsAct2 extends FragmentActivity implements View.OnClickListener {
     {
         SQLiteDatabase db;
         db= openOrCreateDatabase("MyDB",MODE_PRIVATE,null);
-        db.execSQL("INSERT INTO complaints VALUES ( "+c+" , 1 )" );
+        upv+=1;
+        db.execSQL("INSERT INTO complaints( cid , upvoted , subject ,area , upvotes ) VALUES ( "+c+" , 1 , '"+sub+"' , '"+area+"' , "+upv+" )" );
         Log.d("User DB","Inserted into phone's DB");
     }
 

@@ -88,7 +88,7 @@ public class FeedbackFragment extends Fragment {
                 JSONTaskPOSTFeedback task = new JSONTaskPOSTFeedback();
                 String res = null;
                 try {
-                    res=task.execute("http://"+hostIP+"/smartCity/new_feedback.php",fb.getText().toString()).get();
+                    res=task.execute("http://"+hostIP+"/smartCity/new_feedback.php",fb.getText().toString(),"0").get();
                     Log.d("Result", "" + res);
                     if(res==null)
                         Toast.makeText(getContext(), "Failed to connect to server!", Toast.LENGTH_SHORT).show();

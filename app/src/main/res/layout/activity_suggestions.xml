@@ -29,6 +29,8 @@
         android:layout_height="wrap_content"
         android:text="Submit"
         android:id="@+id/btnSuggest"
+        android:background="@color/colorButton"
+        android:textColor="@color/colorButtonText"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

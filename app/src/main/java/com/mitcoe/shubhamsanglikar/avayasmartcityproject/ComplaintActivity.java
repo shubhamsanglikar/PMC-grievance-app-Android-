@@ -45,7 +45,7 @@ public class ComplaintActivity extends ActionBarActivity implements View.OnClick
     Button complaint,show;
     TextView result;
     ListView list;
-    String title,upvotes;
+    String title,upvotes,areaa;
    // private static final String hostIP="192.168.1.5";
     InitClass obj=new InitClass();
     String hostIP = obj.getHostIP();
@@ -130,8 +130,10 @@ public class ComplaintActivity extends ActionBarActivity implements View.OnClick
                 Log.d("c.getInt(0)", "" + c.getInt(0));
                 get_title_upvotes("" + c.getInt(0));
                 comp_title.add("" + c.getInt(0));
-                comp_text_title.add(title);
-                comp_area.add(c.getInt(1)==1?"Upvoted":"Complaint");
+                comp_text_title.add(""+c.getString(10));
+                //comp_area.add(c.getInt(1)==1?"Upvoted":"Complaint");
+                comp_area.add("" + c.getString(4));
+               // comp_upvotes.add("" + c.getInt(8));
                 comp_upvotes.add(upvotes);
                 Log.d("after cursor:", "after tv changed");
             }while(c.moveToNext());
@@ -141,8 +143,8 @@ public class ComplaintActivity extends ActionBarActivity implements View.OnClick
 
 void get_title_upvotes(String id)
 {
-    String t="Cannot load title";
-
+        String t="Cannot load title";
+        title=t;
     JSONTask task = new JSONTask();
     try {
         String res = null;
@@ -154,8 +156,10 @@ void get_title_upvotes(String id)
         if (res == null) {
             Toast.makeText(getApplicationContext(), "Server not found!", Toast.LENGTH_SHORT).show();
         } else {
-            title = jsonObject.getJSONArray("complaints").getJSONObject(0).getString("subject");
+            //title = jsonObject.getJSONArray("complaints").getJSONObject(0).getString("subject");
             upvotes = jsonObject.getJSONArray("complaints").getJSONObject(0).getString("upvotes");
+            //areaa = jsonObject.getJSONArray("complaints").getJSONObject(0).getString("area");
+
 
         }
         // result.setText(res);
@@ -166,7 +170,7 @@ void get_title_upvotes(String id)
     } catch (JSONException e) {
         e.printStackTrace();
     }
-    Log.d("title",title);
+    Log.d("title",""+title);
 }
 
 

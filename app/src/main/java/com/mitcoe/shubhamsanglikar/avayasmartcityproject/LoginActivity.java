@@ -54,7 +54,26 @@ public class LoginActivity extends ActionBarActivity {
         db = openOrCreateDatabase("MyDB",MODE_PRIVATE,null);
         db.execSQL("CREATE TABLE IF NOT EXISTS user_info(uid INT , username VARCHAR(20), email VARCHAR(20) , area VARCHAR(20))");
         db.execSQL("CREATE TABLE IF NOT EXISTS login_status(logged_in INT NOT NULL DEFAULT '0')");
-        db.execSQL("CREATE TABLE IF NOT EXISTS complaints( cid INT , upvoted INT )");
+        String q = "CREATE TABLE IF NOT EXISTS `complaints` (\n" +
+                "  `cid` int(5) ,\n" +
+                "  `upvoted` int(1) NOT NULL,\n" +
+                "  `category` varchar(20) ,\n" +
+                "  `location` varchar(20) ,\n" +
+                "  `area` varchar(20) ,\n" +
+                "  `description` text ,\n" +
+                "  `suggestion` text ,\n" +
+                "  `gov_response` text,\n" +
+                "  `upvotes` int(5) ,\n" +
+                "  `status` int(1) ,\n" +
+                "  `subject` text ,\n" +
+                "  `uid` int(8) ,\n" +
+                "  `latitude` double ,\n" +
+                "  `longitude` double ,\n" +
+                "  `photo` longblob ,\n" +
+                "  `date` timestamp DEFAULT CURRENT_TIMESTAMP\n" +
+                ")";
+        db.execSQL(q);
+        //db.execSQL("CREATE TABLE IF NOT EXISTS complaints( cid INT , upvoted INT , )");
 
 
         Log.d("Database", "Tables created!");

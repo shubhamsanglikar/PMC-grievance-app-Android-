@@ -110,6 +110,8 @@ public class NavigationDrawerFragment extends Fragment {
                     case 0:
                         //Intent i = new Intent(getContext(),TabActivity.class);
                         //startActivity(i);
+                        Intent in = new Intent(getContext(),MainActivity.class);
+                        startActivity(in);
 
                         break;
                     case 1:
@@ -286,7 +288,7 @@ public class NavigationDrawerFragment extends Fragment {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        actionBar.setTitle("@strings/navigation_drawer_open");
+        actionBar.setTitle(R.string.navigation_drawer_open);
     }
 
     private ActionBar getActionBar() {

@@ -1,6 +1,10 @@
+
+
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:choiceMode="singleChoice"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:choiceMode="singleChoice"
     android:dividerHeight="2dp"
     tools:context=".NavigationDrawerFragment"
     android:paddingTop="?android:attr/actionBarSize"
@@ -10,3 +14,4 @@
     android:listSelector="#559fff27"
     android:background="#ffffff"
     android:clickable="true" />
+

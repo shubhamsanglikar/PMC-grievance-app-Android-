@@ -202,10 +202,11 @@ public class RegistrationActivity extends AppCompatActivity  implements View.OnC
         //lon=Double.parseDouble(getIntent().getStringExtra(MapsAct2.longitudekey));  //
         register_complaint();
         int cid = get_complaint();
+        Log.d("complaint cid new",""+cid);
         update_area_table(cid);
 
         db = openOrCreateDatabase("MyDB",MODE_PRIVATE,null);
-        String query="INSERT INTO complaints VALUES ( "+cid+" , 0 )";
+        String query="INSERT INTO complaints( cid , upvoted , subject ,area , upvotes ) VALUES ( "+cid+" , 0 , '"+title+"' , '"+area+"' , "+0+" )";
         db.execSQL(query);
         Log.d("User DB", "Inserted into phone's DB");
 
@@ -297,10 +298,10 @@ public class RegistrationActivity extends AppCompatActivity  implements View.OnC
 
 
     void update_area_table(int cid){
-        JSONTask task = new JSONTask();
+        JSONTaskPOSTUserComplaints task = new JSONTaskPOSTUserComplaints();
         String res = null;
         try {
-            res=task.execute("http://"+hostIP+"/smartCity/update_area_table.php?area="+area+"&type="+type+"&cid="+cid+"&latitude="+lat+"&longitude="+lon+"&title="+title).get();
+            res=task.execute("http://"+hostIP+"/smartCity/update_area_table_post.php",area,type,""+cid,""+lat,""+lon,""+title).get();
             Log.d("Result",""+res);
             if(res==null)
                 Toast.makeText(getApplicationContext(), "Failed to connect to server!", Toast.LENGTH_SHORT).show();
@@ -449,6 +450,117 @@ public class RegistrationActivity extends AppCompatActivity  implements View.OnC
     }
 
 
+
+    /**
+     * Created by Shubham on 14-Mar-16.
+     */
+    public class JSONTaskPOSTUserComplaints extends AsyncTask<String,String,String> {
+        HttpURLConnection connection,conn;
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+            StringBuffer buffer;
+            BufferedReader reader=null;
+            buffer = new StringBuffer();
+            buffer.append("");
+            try
+            {
+                URL url = new URL(strings[0]);
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(10000);
+                conn.setConnectTimeout(15000);
+                conn.setRequestMethod("POST");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("title",strings[6]));
+                params.add(new BasicNameValuePair("area", strings[1]));
+                params.add(new BasicNameValuePair("type", strings[2]));
+                params.add(new BasicNameValuePair("lat", strings[4]));
+                params.add(new BasicNameValuePair("lon", strings[5]));
+                params.add(new BasicNameValuePair("cid",strings[3]));
+                Log.d("Areaaaa == ",".."+strings[1]+"..");
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(os, "UTF-8"));
+                writer.write(getQuery(params));
+                writer.flush();
+                writer.close();
+                os.close();
+
+                conn.connect();
+                InputStream stream = conn.getInputStream();
+
+
+            /*URL url = new URL(strings[0]);
+            connection = (HttpURLConnection) url.openConnection();
+            connection.connect();
+
+            InputStream stream = connection.getInputStream();
+            */
+                Log.d("Buffer stream", ""+stream.toString());
+
+
+                reader = new BufferedReader(new InputStreamReader(stream));
+                String line = "";
+                while((line=reader.readLine())!=null){
+                    buffer.append(line);
+                }
+                return buffer.toString();
+
+            }catch(MalformedURLException e) {
+                e.printStackTrace();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+
+            } finally{
+                if(connection!=null)
+                    connection.disconnect();
+                try {
+                    if(reader!=null)
+                        reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return null;
+        }
+        @Override
+        protected void onPostExecute(String s){
+            super.onPostExecute(s);
+
+        }
+
+
+
+        private String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException
+        {
+            StringBuilder result = new StringBuilder();
+            boolean first = true;
+
+            for (NameValuePair pair : params)
+            {
+                if (first)
+                    first = false;
+                else
+                    result.append("&");
+
+                result.append(URLEncoder.encode(pair.getName(), "UTF-8"));
+                result.append("=");
+                result.append(URLEncoder.encode(pair.getValue(), "UTF-8"));
+            }
+
+            return result.toString();
+        }
+
+
+
+    }
 
 
 

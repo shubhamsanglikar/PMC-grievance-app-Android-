@@ -126,6 +126,9 @@ String tpdesc="A material metaphor is the unifying theory of a rationalized spac
         tcid.setText("ID: "+cid);
         tstatus.setText("Status: "+status);
         tdesc.setText(desc);
-        tgov_response.setText("Response from PMC: \n"+gov_response);
+        if(gov_response==null)
+            tgov_response.setText("No response from the government yet!");
+        else
+            tgov_response.setText("Response from PMC: \n"+gov_response);
     }
 }
